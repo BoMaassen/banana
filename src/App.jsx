@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Profile from './pages/Profile';
@@ -6,8 +6,11 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import './App.css';
+import AuthContextProvider, {AuthContext} from "./context/AuthContext";
 
 function App() {
+    const data = useContext(AuthContext);
+    console.log(data);
   return (
     <>
       <NavBar />
