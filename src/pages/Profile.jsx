@@ -8,7 +8,7 @@ import axios from "axios";
 function Profile() {
     const [privateContent, setPrivateContent] = useState({});
     const {user} = useContext(AuthContext);
-    console.log(user + "joe joe")
+
 
     useEffect(() => {
         console.log("prive data")
@@ -22,8 +22,9 @@ function Profile() {
                        "Content-Type": "application/json",
                        Authorization: `Bearer ${token}`,
                    }})
-                  setPrivateContent(result + "wat is dit");
-               console.log(privateContent);
+                  console.log(result.data);
+               setPrivateContent(result.data);
+
            }catch (e){
                   console.error(e + " Er ging wat fout met prive content ophalen")
 
@@ -39,12 +40,12 @@ function Profile() {
       <h1>Profielpagina</h1>
       <section>
         <h2>Gegevens</h2>
-        <p><strong>Gebruikersnaam:</strong>user</p>
-        <p><strong>Email:</strong>email</p>
+        <p><strong>Gebruikersnaam: </strong>{user.username}</p>
+        <p><strong>Email: </strong>{user.email}</p>
       </section>
       <section>
-        <h2></h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis dolor dolore fuga id molestias qui quo unde?</p>
+        <h2>{privateContent.title}</h2>
+        <p>{privateContent.content}</p>
       </section>
       <p>Terug naar de <Link to="/">Homepagina</Link></p>
     </>

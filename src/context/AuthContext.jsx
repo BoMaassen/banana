@@ -16,6 +16,7 @@ function AuthContextProvider({children}){
 
     const contextData ={
         isAuth: auth.isAuth,
+        user: auth.user,
         login: login,
         logOut: logOut,
     }
@@ -23,9 +24,8 @@ function AuthContextProvider({children}){
     useEffect(() => {
         console.log("aplicatie refresht")
         const token = localStorage.getItem('token');
-        const decoded = jwtDecode(token);
 
-        if (token && isTokenValid(decoded)){
+        if (token && isTokenValid(token)){
             void login(token);
 
         }else{
@@ -76,6 +76,7 @@ function AuthContextProvider({children}){
         setAuth({
             isAuth: false,
             user: null,
+            status: "done",
         })
         console.log("Gebruiker is uitgelogd")
         navigate("/");
